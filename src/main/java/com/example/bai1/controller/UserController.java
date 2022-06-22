@@ -17,7 +17,7 @@ public class UserController {
     private final UserService userService;
 
     @GetMapping("/get")
-    public ResponseEntity<List<User>> get(@RequestParam String s,
+    public ResponseEntity<List<User>> get(@PathVariable("permissionName") String permissionName,
                                           @RequestHeader Permission permission
                                           ){
         return ResponseEntity.ok(userService.getAllUsers());
