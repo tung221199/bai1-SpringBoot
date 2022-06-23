@@ -5,22 +5,21 @@ import com.example.bai1.model.User;
 import com.example.bai1.service.UserService;
 import lombok.Data;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@RequestMapping(path = "/api/student")
-@Data
+@RequestMapping(path = "/api/user")
+@RequiredArgsConstructor
 public class UserController {
     private final UserService userService;
 
     @GetMapping("/get")
-    public ResponseEntity<List<User>> get(@PathVariable("permissionName") String permissionName,
-                                          @RequestHeader Permission permission
-                                          ){
-        return ResponseEntity.ok(userService.getAllUsers());
+    public ResponseEntity<List<User>> get(@RequestHeader(name = "permissionName", required = false) String permissionName ){
+        return ResponseEntity.ok(userService.getAllUsers(permissionName));
     }
 
     @PostMapping("/create")
