@@ -22,8 +22,8 @@ public class Permission {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "id")
     private Long id;
-    @Column(name = "permissionName")
-    private String permissionName;
+    @Column(name = "name")
+    private String name;
 
     @JsonIgnore
     @ManyToMany(mappedBy = "userPermission")
